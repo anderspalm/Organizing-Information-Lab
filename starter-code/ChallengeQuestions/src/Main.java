@@ -1,8 +1,17 @@
-import java.util.*;
+/**
+ * Created by andeski on 6/28/16.
+ */
 
-public class Main {
+import java.util.*;
+public class OrganizingInfoLab {
+
     public static void main(String[] args) {
         //Add code here to test your solutions
+        int[] array = {1, 2, 3, 4, 5};
+        ArrayList<Integer> intList = new ArrayList<Integer>(Arrays.asList(5,2,1,3,4,3,2,8,19));
+        findLargestAndSmallest(array);
+        sumOfTwoLargest(intList);
+        removeDuplicatesFromList(intList);
     }
 
     /**
@@ -16,7 +25,22 @@ public class Main {
      * @return An array of integers with two elements, the largest and smallest from the method parameter
      */
     public static int[] findLargestAndSmallest(int array[]){
+        int largest = 0;
+        int smallest = 0;
 
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > largest) {
+                largest = array[i];
+            }
+        }
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < smallest) {
+                smallest = array[i];
+            }
+        }
+        System.out.println(smallest);
+        System.out.println(largest);
+        return null;
     }
 
 
@@ -25,14 +49,26 @@ public class Main {
      *
      * Given a List of Integers, return the sum of the two largest values.
      *
+     *
      * If the array is empty, return 0.
      * If the array has one value, return that value.
      *
      * @param intList A List of integers of any size.
      * @return Sum of the two largest values
      */
+
     public static int sumOfTwoLargest(List intList){
-       
+        if (intList.size() == 1){
+            return (int) intList.get(1);
+        }
+
+        Collections.sort(intList);
+        Integer one = (Integer) intList.get(intList.size()-1);
+        Integer two = (Integer) intList.get(intList.size()-2);
+
+        System.out.println(one + two);
+
+        return 0;
     }
 
 
@@ -50,8 +86,20 @@ public class Main {
      * @param intList A List of Integers that may or may not include duplicates
      * @return A List of Integers that doesn't contain duplicates.
      */
-    public static List removeDuplicatesFromList(List intList){
 
+    public static List removeDuplicatesFromList(List intList){
+        Collections.sort(intList);
+        int i;
+        if (intList.size() > 0) {
+            for (i = 1; i < intList.size(); i++) {
+
+                if (intList.get(i).equals(intList.get(i - 1))) {
+                    intList.remove(i);
+                }
+            }
+            System.out.println(intList);
+        }
+        return null;
     }
 
 
@@ -77,7 +125,9 @@ public class Main {
      * @param array2 Array of sorted integers
      * @return Array of sorted integers, merged from array1 and array2
      */
-    public static int[] mergeSortedArrays(int[] array1, int[] array2){
-        return null;
-    }
+//        public static int[] mergeSortedArrays(int[] array1, int[] array2){
+//            return null;
+//        }
+
+
 }
